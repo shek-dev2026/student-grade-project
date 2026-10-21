@@ -2,38 +2,40 @@ name = input("Enter student name: ")
 department = input("Enter department: ")
 semester = input("Enter semester: ")
 
-print("\nEnter marks out of 100")
+marks = []
 
-m1 = float(input("Enter marks in Subject 1: "))
-m2 = float(input("Enter marks in Subject 2: "))
-m3 = float(input("Enter marks in Subject 3: "))
+for i in rahulrrrange(1, 4):
+    while True:
+        try:
+            mark = float(input(f"Enter marks in Subject {i}: "))
 
-if all(0 <= m <= 100 for m in [m1, m2, m3]):
+            if 0 <= mark <= 100:
+                marks.append(mark)
+                break
+            else:
+                print("Invalid marks! Enter marks between 0 and 100.")
 
-    average = (m1 + m2 + m3) / 3
+        except ValueError:
+            print("Please enter a valid number.")
 
-    if average >= 90:
-        grade = "S"
-    elif average >= 80:
-        grade = "A"
-    elif average >= 65:
-        grade = "B"
-    elif average >= 50:
-        grade = "C"
-    elif average >= 40:
-        grade = "D"
-    else:
-        grade = "F"
+average = sum(marks) / len(marks)
 
-    print("\n===== STUDENT DETAILS =====")
-    print("Name:", name)
-    print("Department:", department)
-    print("Semester:", semester)
-    print("Subject 1 Marks:", m1)
-    print("Subject 2 Marks:", m2)
-    print("Subject 3 Marks:", m3)
-    print("Average Marks:", round(average, 2))
-    print("Grade:", grade)
-
+if average >= 90:
+    grade = "S"
+elif average >= 80:
+    grade = "A"
+elif average >= 65:
+    grade = "B"
+elif average >= 50:
+    grade = "C"
+elif average >= 40:
+    grade = "D"
 else:
-    print("Invalid marks! Enter marks between 0 and 100.")
+    grade = "F"
+
+print("\n--- Student Result ---")
+print("Name:", name)
+print("Department:", department)
+print("Semester:", semester)
+print("Average Marks:", round(average, 2))
+print("Grade:", grade)
